@@ -465,6 +465,8 @@ class Baker(Generic[M]):
             elif field.name not in self.model_attrs:
                 if (
                     not isinstance(field, ForeignKey)
+                    # Added by PRR 19/8/2025 13:25
+                    and not isinstance(field, ManyToOneRel)
                     or hasattr(field, "attname")
                     and field.attname not in self.model_attrs
                 ):
